@@ -3,6 +3,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
 //import { DbComponent } from './db/db.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddRxComponent } from './add-rx/add-rx.component';
@@ -11,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
+    PrescriptionsComponent,
     // DbComponent,
     AddRxComponent
   ],
