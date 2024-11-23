@@ -1,0 +1,62 @@
+.test-form {
+    background-color: #f9f9f9;
+    padding: 10px 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px 15px;
+    align-items: center;
+  
+    .control {
+      display: contents; /* Aligns items inline with a grid-like layout */
+      
+      label {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #333;
+        margin-right: 10px;
+        align-self: center;
+      }
+  
+      input {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        outline: none;
+        transition: border-color 0.3s ease;
+  
+        &:focus {
+          border-color: #00796b;
+        }
+      }
+  
+      span {
+        grid-column: span 2; /* Error messages span across the grid */
+        color: #d32f2f;
+        font-size: 0.8rem;
+        margin-top: 3px;
+      }
+    }
+  
+    input[type="submit"],
+    button {
+      grid-column: span 2; /* Buttons span across the grid */
+      background-color: #00796b;
+      color: #fff;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+      justify-self: center;
+  
+      &:hover {
+        background-color: #004d40;
+      }
+    }
+  }
+  

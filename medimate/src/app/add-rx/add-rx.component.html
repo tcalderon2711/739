@@ -1,0 +1,28 @@
+
+
+<form class="test-form" #f="ngForm" (ngSubmit)="onFormSubmit(f)">
+    <div class="control">
+        <label for="medication-name">Medication Name:</label>
+        <input type="text" id="medication-name" [(ngModel)]="name" name="name" placeholder="e.g. Aspirin" required #nameField="ngModel" />
+        <span *ngIf="!nameField.valid && saveUnsuccessful">Name is required.</span>
+    </div>
+    <div class="control">
+        <label for="dose">Dose:</label>
+        <input type="text" id="dose" placeholder="e.g. 2 pills" [(ngModel)]="dose" name="dose" required #doseField="ngModel"  />
+        <span *ngIf="!doseField.valid && saveUnsuccessful">dose is required.</span>
+    </div>
+    <div class="control">
+        <label for="unit">Unit:</label>
+        <input type="text" id="unit" placeholder="e.g. mg" [(ngModel)]="unit" name="unit" required #unitField="ngModel"  />
+        <span *ngIf="!unitField.valid && saveUnsuccessful">Unit is required.</span>
+    </div>
+    <div class="control">
+        <label for="frequency">Frequency:</label>
+        <input type="text" id="frequency" [(ngModel)]="frequency" name="frequency" placeholder="e.g. Once a day" required #frequencyField="ngModel"
+           />
+        <span *ngIf="!frequencyField.valid && saveUnsuccessful">Frequency is required.</span>
+    </div>
+    <input type="submit" value="Add Prescription" />
+    <button type="button" (click)="UpdateInfo()">Update Prescription</button>
+    <button type="button" (click)="DeleteInfo()">Delete Prescription</button>
+</form>
