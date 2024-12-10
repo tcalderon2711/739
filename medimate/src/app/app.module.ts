@@ -4,25 +4,32 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
-//import { DbComponent } from './db/db.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddRxComponent } from './add-rx/add-rx.component';
 import { FormsModule } from '@angular/forms';
+import { PrescriptionService } from './shared/prescription.service';
+import { FdaInfoComponent } from './fda-info/fda-info.component';
+import { LocationsComponent } from './locations/locations.component';
+import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PrescriptionsComponent,
-    // DbComponent,
-    AddRxComponent
+    AddRxComponent,
+    FdaInfoComponent,
+    LocationsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
+    PrescriptionService,
     provideClientHydration()
   ],
   bootstrap: [AppComponent]
