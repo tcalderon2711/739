@@ -1,0 +1,11 @@
+<div>
+    <h1>Search for Generic Names</h1>
+    <input type="text" [(ngModel)]="brandName" placeholder="Brand Name"/>
+    <button (click)="searchGenericNames()">Search</button>
+
+    <div *ngIf="error" class="error">{{error}}</div>
+
+    <ul *ngIf="genericNames.length>0">
+        <li *ngFor="let name of genericNames">{{name}}</li>
+    </ul>
+</div>

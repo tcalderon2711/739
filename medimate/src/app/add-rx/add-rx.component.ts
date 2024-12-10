@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { PrescriptionService } from '../shared/prescription.service';
 import { NgForm } from '@angular/forms';
 import {IRx} from '../models/IRx';
 
@@ -8,7 +9,7 @@ import {IRx} from '../models/IRx';
   templateUrl: './add-rx.component.html',
   styleUrl: './add-rx.component.scss'
 })
-export class AddRxComponent {
+export class AddRxComponent implements OnInit{
 
   public saveUnsuccessful = false;
 
@@ -21,7 +22,7 @@ export class AddRxComponent {
   public frequency:string;
 
   public rxList:IRx[]=[];
-  constructor(public httpClient: HttpClient){
+  constructor(private prescriptionService:PrescriptionService){
 
   }
   //fill out the table when starting application 
@@ -37,16 +38,16 @@ export class AddRxComponent {
     }
     console.log(ngForm);
 
-    //creating the header
-    const options = {
-      headers: new HttpHeaders({
-        'Content-type': 'application/json',
-        'Accept': 'application/json'
-      })
-    };
+    // //creating the header
+    // const options = {
+    //   headers: new HttpHeaders({
+    //     'Content-type': 'application/json',
+    //     'Accept': 'application/json'
+    //   })
+    // };
 
     //creating the data
-    const data = {
+    const data:IRx= {
       name:this.name,
       dose: this.dose,
       unit: this.unit,
@@ -54,8 +55,7 @@ export class AddRxComponent {
     };
 
     //post the data to specified url
-    this.httpClient.post<IRx[]>("http://localhost:3000", data, options)
-      .subscribe({
+    this.prescriptionService.addRX(data).subscribe({
         next: () => {
           console.log("call successful");
           this.rxList.push(data);
@@ -70,14 +70,14 @@ export class AddRxComponent {
   }
 //gets data to fill out table 
   getData() {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-type': 'application/json',
-        'Accept': 'application/json'
-      })
-    };
+    // const options = {
+    //   headers: new HttpHeaders({
+    //     'Content-type': 'application/json',
+    //     'Accept': 'application/json'
+    //   })
+    // };
 
-    this.httpClient.get<IRx[]>("http://localhost:3000", options)
+    this.prescriptionService.getRXList()
       .subscribe({
         next: (data) => {
           this.rxList=data;
@@ -88,14 +88,14 @@ export class AddRxComponent {
       });
   }
   DeleteInfo() {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-type': 'application/json',
-        'Accept': 'application/json'
-      })
-    };
+    // const options = {
+    //   headers: new HttpHeaders({
+    //     'Content-type': 'application/json',
+    //     'Accept': 'application/json'
+    //   })
+    // };
 
-    this.httpClient.delete<IRx>(`http://localhost:3000/${this.name}`, options)
+    this.prescriptionService.deleteRx(this.name)
       .subscribe({
         next: (data) => {
           this.getData();
@@ -106,20 +106,20 @@ export class AddRxComponent {
       });
     }
     UpdateInfo() {
-      const options = {
-        headers: new HttpHeaders({
-          'Content-type': 'application/json',
-          'Accept': 'application/json'
-        })
-      };
-       const updatedRx={
+      // const options = {
+      //   headers: new HttpHeaders({
+      //     'Content-type': 'application/json',
+      //     'Accept': 'application/json'
+      //   })
+      // };
+       const updatedRx:IRx={
         name:this.name,
         dose: this.dose,
         unit: this.unit,
         frequency:this.frequency
 
         };
-        this.httpClient.put<IRx>(`http://localhost:3000/${this.name}`,updatedRx, options).subscribe({
+        this.prescriptionService.updateRX(this.name,updatedRx).subscribe({
           next: (data)=>{
             this.getData();
           },
