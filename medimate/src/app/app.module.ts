@@ -12,7 +12,6 @@ import { FdaInfoComponent } from './fda-info/fda-info.component';
 import { LocationsComponent } from './locations/locations.component';
 import { HomeComponent } from './home/home.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +19,7 @@ import { HomeComponent } from './home/home.component';
     AddRxComponent,
     FdaInfoComponent,
     LocationsComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
