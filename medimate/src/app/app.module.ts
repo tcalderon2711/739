@@ -11,6 +11,7 @@ import { PrescriptionService } from './shared/prescription.service';
 import { FdaInfoComponent } from './fda-info/fda-info.component';
 import { LocationsComponent } from './locations/locations.component';
 import { HomeComponent } from './home/home.component';
+import { RemindersComponent } from './reminders/reminders.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HomeComponent } from './home/home.component';
     FdaInfoComponent,
     LocationsComponent,
     HomeComponent,
+    RemindersComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,27 @@
+<header>
+    <button class="home-button" [routerLink]="['/']">Home</button>
+    <h1>MediMate</h1>
+    <p>Your Personal Medication Reminder & Information Hub</p>
+  </header>
+  
+  <main>
+    <section id="reminders">
+      <h2>Set Reminders</h2>
+      <p>Here are your prescriptions. Click the button to set a reminder for each.</p>
+      
+      <div class="reminder-list">
+        <ul *ngIf="rxList.length > 0">
+          <li *ngFor="let item of rxList" class="reminder-item">
+            <span>{{ item.name }} {{ item.dose }} {{ item.unit }} {{ item.frequency }}</span>
+            <button (click)="setReminder(item)" class="set-reminder-button">Set Reminder</button>
+          </li>
+        </ul>
+        <p *ngIf="rxList.length === 0">No prescriptions available.</p>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <p>MediMate - Helping You Stay On Track With Your Medication</p>
+  </footer>
+  
