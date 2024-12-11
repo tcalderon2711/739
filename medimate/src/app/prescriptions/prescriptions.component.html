@@ -3,11 +3,12 @@
   <p>Review your current prescriptions and their details below.</p>
 
   <div class="prescription-list">
-    <div class="prescription-card">
-
-      <ul *ngIf="rxList.length>0">
-        <li *ngFor="let item of rxList">{{item.name}} {{item.dose}} {{item.unit}} {{item.frequency}}</li>
-      </ul>
-    </div>
+    <ul *ngIf="rxList.length > 0">
+      <li *ngFor="let item of rxList" class="prescription-item">
+        <span>{{ item.name }} {{ item.dose }} {{ item.unit }} {{ item.frequency }}</span>
+        <button (click)="DeleteInfo()" class="delete-button">Delete</button>
+      </li>
+    </ul>
+    <p *ngIf="rxList.length === 0">No prescriptions available.</p>
   </div>
 </section>
