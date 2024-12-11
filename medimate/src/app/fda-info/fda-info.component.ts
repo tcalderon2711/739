@@ -7,7 +7,9 @@ import { PublicAPIService } from '../shared/public-api.service';
 })
 export class FdaInfoComponent {
  brandName='';
+ adverseReactions='';
  genericNames: string[]=[];
+ adverseReactionsInfo:string[]=[];
  error='';
 
  constructor(private publicAPIService:PublicAPIService){}
@@ -16,6 +18,19 @@ export class FdaInfoComponent {
   this.publicAPIService.getGenericNames(this.brandName).subscribe({
     next:(data)=>{
       this.genericNames=data;
+      this.error='';
+    },
+    error:(err)=>{
+      this.error='Error fetching data.';
+      console.error(err);
+    },
+  });
+ }
+
+ searchAdverseReactions(){
+  this.publicAPIService.getAdverseReactions(this.brandName).subscribe({
+    next:(data)=>{
+      this.adverseReactionsInfo=data;
       this.error='';
     },
     error:(err)=>{

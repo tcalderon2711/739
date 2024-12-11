@@ -8,4 +8,8 @@
     <ul *ngIf="genericNames.length>0">
         <li *ngFor="let name of genericNames">{{name}}</li>
     </ul>
+
+    <h1>Adverse Reactions</h1>
+    <input type="text" [(ngModel)]="adverseReactions" placeholder="Enter Medication"/>
+    <button (click)="searchAdverseReactions()">Search</button>
 </div>
