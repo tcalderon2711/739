@@ -6,7 +6,7 @@
     <ul *ngIf="rxList.length > 0">
       <li *ngFor="let item of rxList" class="prescription-item">
         <span>{{ item.name }} {{ item.dose }} {{ item.unit }} {{ item.frequency }}</span>
-        <button (click)="DeleteInfo()" class="delete-button">Delete</button>
+        <button (click)="onDelete(item)" class="delete-button">Delete</button>
       </li>
     </ul>
     <p *ngIf="rxList.length === 0">No prescriptions available.</p>

@@ -31,21 +31,13 @@ export class PrescriptionsComponent implements OnInit {
     });
   }
 
-  DeleteInfo() {
-    this.prescriptionService.deleteRx(this.name).subscribe({
+  // Improved delete logic with re-fetch
+  onDelete(item: IRx) {
+    // Delete prescription from the backend first
+    this.prescriptionService.deleteRx(item.name).subscribe({
       next: () => {
-        this.getData();
-      },
-      error: (err) => {
-        console.log("Error occurred: " + err);
-      },
-    });
-  }
-
-  onDelete(name: string) {
-    this.prescriptionService.deleteRx(name).subscribe({
-      next: () => {
-        this.getData();
+        // After deletion, re-fetch the entire list
+        this.getData();  // Re-fetch to ensure the list is updated correctly
       },
       error: (err) => {
         console.error('Error occurred while deleting prescription:', err);
