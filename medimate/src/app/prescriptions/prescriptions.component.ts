@@ -8,10 +8,6 @@ import { IRx } from '../models/IRx';
   styleUrls: ['./prescriptions.component.scss']
 })
 export class PrescriptionsComponent implements OnInit {
-  public name: string;
-  public dose: number;
-  public unit: string;
-  public frequency: string;
   public rxList: IRx[] = [];
 
   constructor(private prescriptionService: PrescriptionService) {}
@@ -27,20 +23,20 @@ export class PrescriptionsComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error occurred while fetching data:', err);
+        this.rxList = []; // Ensure list is reset on error
       }
     });
   }
 
-  // Improved delete logic with re-fetch
   onDelete(item: IRx) {
-    // Delete prescription from the backend first
     this.prescriptionService.deleteRx(item.name).subscribe({
       next: () => {
-        // After deletion, re-fetch the entire list
-        this.getData();  // Re-fetch to ensure the list is updated correctly
+        // Remove the item from the local list immediately
+        this.rxList = this.rxList.filter(rx => rx.name !== item.name);
       },
       error: (err) => {
         console.error('Error occurred while deleting prescription:', err);
+        // Optionally, you could add error handling to show a message to the user
       }
     });
   }

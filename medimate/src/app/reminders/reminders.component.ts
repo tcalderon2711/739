@@ -28,7 +28,7 @@ export class RemindersComponent implements OnInit {
   }
 
   setReminder(prescription: IRx) {
-    const reminderTime = prompt(`Set a reminder time for ${prescription.name} (e.g., 2:30 am):`);
+    const reminderTime = prompt(`Set a reminder time for ${prescription.name} (e.g., 2:30 pm):`);
     if (reminderTime) {
       alert(`Reminder set for ${prescription.name} at ${reminderTime}!`);
     }
