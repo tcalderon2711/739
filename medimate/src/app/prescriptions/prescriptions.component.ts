@@ -23,20 +23,18 @@ export class PrescriptionsComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error occurred while fetching data:', err);
-        this.rxList = []; // Ensure list is reset on error
+        this.rxList = []; 
       }
     });
   }
-
   onDelete(item: IRx) {
     this.prescriptionService.deleteRx(item.name).subscribe({
       next: () => {
-        // Remove the item from the local list immediately
+
         this.rxList = this.rxList.filter(rx => rx.name !== item.name);
       },
       error: (err) => {
         console.error('Error occurred while deleting prescription:', err);
-        // Optionally, you could add error handling to show a message to the user
       }
     });
   }
