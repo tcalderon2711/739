@@ -8,10 +8,6 @@ import { IRx } from '../models/IRx';
   styleUrls: ['./prescriptions.component.scss']
 })
 export class PrescriptionsComponent implements OnInit {
-  public name: string;
-  public dose: number;
-  public unit: string;
-  public frequency: string;
   public rxList: IRx[] = [];
 
   constructor(private prescriptionService: PrescriptionService) {}
@@ -27,25 +23,15 @@ export class PrescriptionsComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error occurred while fetching data:', err);
+        this.rxList = []; 
       }
     });
   }
-
-  DeleteInfo() {
-    this.prescriptionService.deleteRx(this.name).subscribe({
+  onDelete(item: IRx) {
+    this.prescriptionService.deleteRx(item.name).subscribe({
       next: () => {
-        this.getData();
-      },
-      error: (err) => {
-        console.log("Error occurred: " + err);
-      },
-    });
-  }
 
-  onDelete(name: string) {
-    this.prescriptionService.deleteRx(name).subscribe({
-      next: () => {
-        this.getData();
+        this.rxList = this.rxList.filter(rx => rx.name !== item.name);
       },
       error: (err) => {
         console.error('Error occurred while deleting prescription:', err);

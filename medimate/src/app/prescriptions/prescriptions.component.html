@@ -3,12 +3,17 @@
   <p>Review your current prescriptions and their details below.</p>
 
   <div class="prescription-list">
-    <ul *ngIf="rxList.length > 0">
-      <li *ngFor="let item of rxList" class="prescription-item">
-        <span>{{ item.name }} {{ item.dose }} {{ item.unit }} {{ item.frequency }}</span>
-        <button (click)="DeleteInfo()" class="delete-button">Delete</button>
-      </li>
-    </ul>
-    <p *ngIf="rxList.length === 0">No prescriptions available.</p>
+    <ng-container *ngIf="rxList.length > 0; else noPresecriptions">
+      <ul>
+        <li *ngFor="let item of rxList" class="prescription-item">
+          <span>{{ item.name }} {{ item.dose }} {{ item.unit }} {{ item.frequency }}</span>
+          <button (click)="onDelete(item)" class="delete-button">Delete</button>
+        </li>
+      </ul>
+    </ng-container>
+    
+    <ng-template #noPresecriptions>
+      <p class="no-prescriptions">No prescriptions available.</p>
+    </ng-template>
   </div>
 </section>
